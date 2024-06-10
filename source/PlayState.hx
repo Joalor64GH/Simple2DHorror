@@ -10,13 +10,9 @@ class PlayState extends FlxState
 		super.create();
 
 		player = new Player(FlxG.width / 2, FlxG.height / 2);
-		player.acceleration.y = 400;
-		player.maxVelocity.y = 200;
 		add(player);
 
 		monster = new Monster(200, 100);
-		monster.maxVelocity.x = 100;
-		monster.maxVelocity.y = 100;
 		add(monster);
 
 		FlxG.camera.follow(player);
@@ -26,6 +22,8 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		FlxG.overlap(player, monster, onOverlap);
 
 		if (monster.x < player.x)
 			monster.velocity.x = 50;
@@ -57,8 +55,11 @@ class PlayState extends FlxState
 
 		if (FlxG.keys.justPressed.ESCAPE)
 			FlxG.switchState(TitleState.new);
+			
+	}
 
-		if (monster.overlaps(player))
-			openSubState(new JumpscareSubState());
+	private function onOverlap()
+	{
+		openSubState(new JumpscareSubState());
 	}
 }
