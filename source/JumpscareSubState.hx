@@ -4,7 +4,7 @@ class JumpscareSubState extends FlxSubState {
 	public function new() {
 		super();
 
-        FlxG.sound.play(Paths.sound('jumpscare'));
+		FlxG.sound.play(Paths.sound('jumpscare'));
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.scrollFactor.set();

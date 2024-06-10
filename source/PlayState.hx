@@ -20,7 +20,7 @@ class PlayState extends FlxState {
 		monster = new FlxSprite(200, 100).makeGraphic(50, 100, FlxColor.RED);
 		add(monster);
 
-		timeTxt = new FlxText(0, 0, 0, "Time Survived: 00:00:00", 64);
+		timeTxt = new FlxText(0, 0, 0, "", 64);
 		timeTxt.scrollFactor.set();
 		add(timeTxt);
 	}
@@ -29,7 +29,7 @@ class PlayState extends FlxState {
 		super.update(elapsed);
 
 		elapsedTime += elapsed;
-		timeTxt.text = "Time Survived: " + formatTime(elapsedTime);
+		timeTxt.text = "Time Survived: " + FlxStringUtil.formatTime(elapsedTime, true);
 
 		FlxG.camera.follow(player, LOCKON);
 
@@ -78,13 +78,5 @@ class PlayState extends FlxState {
 			&& sprite1.x + sprite1.width > sprite2.x
 			&& sprite1.y < sprite2.y + sprite2.height
 			&& sprite1.y + sprite1.height > sprite2.y);
-	}
-
-	function formatTime(timeInSeconds:Float):String {
-		var hours:Int = Std.int(timeInSeconds / 3600);
-		var minutes:Int = Std.int((timeInSeconds % 3600) / 60);
-		var seconds:Int = Std.int(timeInSeconds % 60);
-
-		return FlxStringUtil.formatString("%02d:%02d:%02d", [hours, minutes, seconds]);
 	}
 }
