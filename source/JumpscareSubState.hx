@@ -1,27 +1,27 @@
 package;
 
-class JumpscareSubState extends FlxSubState
-{
-    public function new()
-    {
-        super();
+class JumpscareSubState extends FlxSubState {
+	public function new() {
+		super();
 
-        var bg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.BLACK);
-        add(bg);
+        FlxG.sound.play(Paths.sound('jumpscare'));
 
-        var jump:FlxSprite = new FlxSprite().makeGraphic(200, 200, FlxColor.RED);
-        jump.screenCenter();
-        add(jump);
-    }
+		var bg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.BLACK);
+		add(bg);
 
-    override function update(elapsed:Float)
-    {
-        super.update(elapsed);
-        
-        FlxG.camera.shake(0.01, 0.1);
+		var jump:FlxSprite = new FlxSprite().makeGraphic(500, 500, FlxColor.RED);
+		jump.scrollFactor.set();
+		jump.screenCenter(XY);
+		add(jump);
+	}
 
-        new FlxTimer().start(2, function(tmr:FlxTimer) {
-            FlxG.switchState(GameOverState.new);
-        });
-    }
+	override function update(elapsed:Float) {
+		super.update(elapsed);
+
+		FlxG.camera.shake(0.01, 0.1);
+
+		new FlxTimer().start(2, function(tmr:FlxTimer) {
+			FlxG.switchState(GameOverState.new);
+		});
+	}
 }

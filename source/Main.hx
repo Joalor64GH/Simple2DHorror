@@ -2,8 +2,7 @@ package;
 
 import openfl.display.FPS;
 
-class Main extends Sprite
-{
+class Main extends Sprite {
 	public final config = {
 		gameDimensions: [1280, 720],
 		defaultFPS: 60,
@@ -12,11 +11,10 @@ class Main extends Sprite
 		startFullscreen: false
 	};
 
-	public function new()
-	{
+	public function new() {
 		super();
 		addChild(new FPS(10, 10, 0xFFFFFF));
-		addChild(new FlxGame(config.gameDimensions[0], config.gameDimensions[1], config.initialState, config.defaultFPS, config.defaultFPS,
-			config.skipSplash, config.startFullscreen));
+		addChild(new FlxGame(config.gameDimensions[0], config.gameDimensions[1], config.initialState, config.defaultFPS, config.defaultFPS, config.skipSplash,
+			config.startFullscreen));
 	}
 }

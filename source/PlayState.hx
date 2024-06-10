@@ -1,13 +1,13 @@
 package;
 
-class PlayState extends FlxState
-{
+class PlayState extends FlxState {
 	var player:FlxSprite;
 	var monster:FlxSprite;
 
-	override public function create()
-	{
+	override public function create() {
 		super.create();
+
+		FlxG.sound.playMusic(Paths.music('game'));
 
 		player = new FlxSprite(FlxG.width / 2, FlxG.height / 2).makeGraphic(50, 100, FlxColor.BLUE);
 		add(player);
@@ -16,8 +16,7 @@ class PlayState extends FlxState
 		add(monster);
 	}
 
-	override public function update(elapsed:Float)
-	{
+	override public function update(elapsed:Float) {
 		super.update(elapsed);
 
 		FlxG.camera.follow(player, LOCKON);
@@ -52,19 +51,17 @@ class PlayState extends FlxState
 
 		if (FlxG.keys.justPressed.ESCAPE)
 			FlxG.switchState(TitleState.new);
-		
-		if (checkOverlap(monster, player)) 
-		{
+
+		if (checkOverlap(monster, player)) {
 			trace('oops you got caught');
 			openSubState(new JumpscareSubState());
 		}
 	}
 
-	function checkOverlap(sprite1:FlxSprite, sprite2:FlxSprite):Bool
-	{
-		return (sprite1.x < sprite2.x + sprite2.width && 
-			sprite1.x + sprite1.width > sprite2.x &&
-			sprite1.y < sprite2.y + sprite2.height && 
-			sprite1.y + sprite1.height > sprite2.y);
+	function checkOverlap(sprite1:FlxSprite, sprite2:FlxSprite):Bool {
+		return (sprite1.x < sprite2.x + sprite2.width
+			&& sprite1.x + sprite1.width > sprite2.x
+			&& sprite1.y < sprite2.y + sprite2.height
+			&& sprite1.y + sprite1.height > sprite2.y);
 	}
 }
