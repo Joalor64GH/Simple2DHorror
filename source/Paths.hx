@@ -8,6 +8,14 @@ using haxe.io.Path;
 class Paths {
 	inline public static final DEFAULT_FOLDER:String = 'assets';
 
+	inline static public function exists(asset:String) {
+		#if sys 
+		return FileSystem.exists(asset);
+		#else
+		return Assets.exists(asset);
+		#end
+	}
+
 	static public function getPath(folder:Null<String>, file:String) {
 		if (folder == null) folder = DEFAULT_FOLDER;
 		return folder + '/' + file;
@@ -49,7 +57,7 @@ class Paths {
 		return file('images/$key.png');
 
 	inline static public function font(key:String) {
-		var path:String = getPath('fonts/$key');
+		var path:String = file('fonts/$key');
 
 		if (path.extension() == '') {
 			if (exists(path.withExtension("ttf")))

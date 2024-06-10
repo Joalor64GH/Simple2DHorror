@@ -1,6 +1,6 @@
 package;
 
-class FPSDisplay extends TextField
+class FPSDisplay extends openfl.text.TextField
 {
 	var times:Array<Float> = [];
 
@@ -14,7 +14,7 @@ class FPSDisplay extends TextField
 		width = 1280;
 		height = 720;
 		selectable = false;
-		defaultTextFormat = new TextFormat(Paths.font((font != null) ? font : 'vcr.ttf'), 18, 0xFFFFFF);
+		defaultTextFormat = new openfl.text.TextFormat(Paths.font((font != null) ? font : 'vcr.ttf'), 18, 0xFFFFFF);
 		alpha = 0.8; // to see things from the back better
 
 		addEventListener(openfl.events.Event.ENTER_FRAME, (_) ->
