@@ -4,11 +4,13 @@ class TitleState extends FlxState {
 	override public function create() {
 		super.create();
 
-		var text:FlxText = new FlxText(0, 0, 0, "Simple 2D Horror", 64);
+		var text:FlxText = new FlxText(0, 0, 0, "Simple 2D Horror", 12);
+		text.setFormat(Paths.font('vcr.ttf'), 64, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		text.screenCenter();
 		add(text);
 
-		var text2:FlxText = new FlxText(0, text.y + 100, 0, "ENTER - Play / ESCAPE - Exit", 30);
+		var text2:FlxText = new FlxText(0, text.y + 100, 0, "ENTER - Play / ESCAPE - Exit", 12);
+		text2.setFormat(Paths.font('vcr.ttf'), 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		text2.screenCenter(X);
 		add(text2);
 	}

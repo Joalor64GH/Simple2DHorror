@@ -20,7 +20,8 @@ class PlayState extends FlxState {
 		monster = new FlxSprite(200, 100).makeGraphic(50, 100, FlxColor.RED);
 		add(monster);
 
-		timeTxt = new FlxText(FlxG.width / 2, 0, 0, "", 50);
+		timeTxt = new FlxText(FlxG.width / 2, 0, 0, "", 12);
+		timetxt.setFormat(Paths.font('vcr.ttf'), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		add(timeTxt);
 	}
@@ -62,6 +63,7 @@ class PlayState extends FlxState {
 			player.velocity.y = 0;
 
 		if (FlxG.keys.justPressed.ESCAPE) {
+			trace('paused');
 			persistentUpdate = false;
 			openSubState(new PauseSubState());
 		}
