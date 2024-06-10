@@ -35,8 +35,10 @@
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
-	<!-- fix for macros -->
 	<haxeflag name="--macro" value="allowPackage('flash')" />
 	<haxeflag name="--macro" value="include('my.pack')" />
+
+	<haxedef name="no-deprecation-warnings" />
+	<haxedef name="message.reporting" value="pretty" />
 
 </project>

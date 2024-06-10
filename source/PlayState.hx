@@ -19,8 +19,8 @@ class PlayState extends FlxState
 		monster.maxVelocity.y = 100;
 		add(monster);
 
-		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
-		FlxG.camera.setBounds(0, 0, FlxG.worldBounds.width, FlxG.worldBounds.height);
+		FlxG.camera.follow(player, LOCKON);
+		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 	}
 
 	override public function update(elapsed:Float)
@@ -41,15 +41,19 @@ class PlayState extends FlxState
 		else
 			monster.velocity.y = 0;
 
-		final keyPressed:FlxKey = FlxG.keys.firstJustPressed();
-        if (keyPressed != FlxKey.NONE) {
-            switch (keyPressed) {
-                case LEFT: player.velocity.x = -100;
-                case DOWN: player.velocity.y = 100;
-                case UP: player.velocity.y = -100;
-                case RIGHT: player.velocity.x = 100;
-            }
-        }
+		if (FlxG.keys.justPressed.LEFT)
+			player.velocity.x = -100;
+		else if (FlxG.keys.justPressed.RIGHT)
+			player.velocity.x = 100;
+		else
+			player.velocity.x = 0;
+
+		if (FlxG.keys.justPressed.UP)
+			player.velocity.y = -100;
+		else if (FlxG.keys.justPressed.DOWN)
+			player.velocity.y = 100;
+		else
+			player.velocity.y = 0;
 
 		if (FlxG.keys.justPressed.ESCAPE)
 			FlxG.switchState(TitleState.new);
