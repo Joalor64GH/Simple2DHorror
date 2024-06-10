@@ -7,13 +7,10 @@ class JumpscareSubState extends FlxSubState
         super();
 
         var bg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, FlxColor.BLACK);
-        bg.cameras = [FlxG.cameras.list[1]];
-        bg.scrollFactor.set();
         add(bg);
 
         var jump:FlxSprite = new FlxSprite().makeGraphic(200, 200, FlxColor.RED);
-        jump.screenCenter(X);
-        jump.scrollFactor.set();
+        jump.screenCenter();
         add(jump);
     }
 

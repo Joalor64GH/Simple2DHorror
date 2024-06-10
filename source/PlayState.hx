@@ -12,7 +12,7 @@ class PlayState extends FlxState
 		player = new FlxSprite(FlxG.width / 2, FlxG.height / 2).makeGraphic(50, 100, FlxColor.BLUE);
 		add(player);
 
-		monster = new FlxSprite(200, 100).makeGraphic(50, 100, FlxColor.BLUE);
+		monster = new FlxSprite(200, 100).makeGraphic(50, 100, FlxColor.RED);
 		add(monster);
 	}
 
