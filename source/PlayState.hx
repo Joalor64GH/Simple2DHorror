@@ -20,7 +20,7 @@ class PlayState extends FlxState {
 		monster = new FlxSprite(200, 100).makeGraphic(50, 100, FlxColor.RED);
 		add(monster);
 
-		timeTxt = new FlxText(0, 0, 0, "", 12);
+		timeTxt = new FlxText(0, 0, FlxG.height, "", 12);
 		timeTxt.setFormat(Paths.font('vcr.ttf'), 50, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.screenCenter(X);
