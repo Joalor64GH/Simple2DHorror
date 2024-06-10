@@ -37,28 +37,28 @@ class PlayState extends FlxState
 		else
 			monster.velocity.y = 0;
 
-		if (FlxG.keys.justPressed.LEFT)
+		if (FlxG.keys.anyPressed([LEFT, A]))
 			player.velocity.x = -100;
-		else if (FlxG.keys.justPressed.RIGHT)
+		else if (FlxG.keys.anyPressed([RIGHT, D]))
 			player.velocity.x = 100;
 		else
 			player.velocity.x = 0;
 
-		if (FlxG.keys.justPressed.UP)
+		if (FlxG.keys.anyPressed([UP, W]))
 			player.velocity.y = -100;
-		else if (FlxG.keys.justPressed.DOWN)
+		else if (FlxG.keys.anyPressed([DOWN, S]))
 			player.velocity.y = 100;
 		else
 			player.velocity.y = 0;
 
 		if (FlxG.keys.justPressed.ESCAPE)
-			FlxG.switchState(TitleState.new);
-			
+			FlxG.switchState(TitleState.new);	
 	}
 
-	private function onOverlap(player:Player, monster:Monster)
+	function onOverlap(player:Player, monster:Monster)
 	{
-		if (player.alive && player.exists && monster.alive && monster.exists)
-			openSubState(new JumpscareSubState());
+		player.kill();
+		persistentUpdate = false;
+		openSubState(new JumpscareSubState());
 	}
 }
