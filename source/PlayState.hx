@@ -65,6 +65,7 @@ class PlayState extends FlxState {
 
 		if (FlxG.keys.justPressed.ESCAPE) {
 			persistentUpdate = false;
+			FlxG.sound.music.pause();
 			openSubState(new PauseSubState());
 		}
 

@@ -3,7 +3,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Simple 2D Horror" file="Horror" main="Main" version="1.0.0" company="Joalor64" />
+	<app title="Simple 2D Horror" file="Horror" main="Main" version="1.0.1" company="Joalor64" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
