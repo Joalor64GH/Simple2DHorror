@@ -4,8 +4,13 @@ class PlayState extends FlxState {
 	var player:FlxSprite;
 	var monster:FlxSprite;
 
+	var timeTxt:FlxText;
+	var elapsedTime:Float;
+
 	override public function create() {
 		super.create();
+
+		elapsedTime = 0;
 
 		FlxG.sound.playMusic(Paths.music('game'));
 
@@ -14,10 +19,17 @@ class PlayState extends FlxState {
 
 		monster = new FlxSprite(200, 100).makeGraphic(50, 100, FlxColor.RED);
 		add(monster);
+
+		timeTxt = new FlxText(0, 0, 0, "Time Survived: 00:00:00", 64);
+		timeTxt.scrollFactor.set();
+		add(timeTxt);
 	}
 
 	override public function update(elapsed:Float) {
 		super.update(elapsed);
+
+		elapsedTime += elapsed;
+		timeTxt.text = "Time Survived: " + formatTime(elapsedTime);
 
 		FlxG.camera.follow(player, LOCKON);
 
@@ -49,11 +61,14 @@ class PlayState extends FlxState {
 		else
 			player.velocity.y = 0;
 
-		if (FlxG.keys.justPressed.ESCAPE)
-			FlxG.switchState(TitleState.new);
+		if (FlxG.keys.justPressed.ESCAPE) {
+			persistentUpdate = false;
+			openSubState(new PauseSubState());
+		}
 
 		if (checkOverlap(monster, player)) {
 			trace('oops you got caught');
+			FlxG.sound.music.volume = 0;
 			openSubState(new JumpscareSubState());
 		}
 	}
@@ -63,5 +78,13 @@ class PlayState extends FlxState {
 			&& sprite1.x + sprite1.width > sprite2.x
 			&& sprite1.y < sprite2.y + sprite2.height
 			&& sprite1.y + sprite1.height > sprite2.y);
+	}
+
+	function formatTime(timeInSeconds:Float):String {
+		var hours:Int = Std.int(timeInSeconds / 3600);
+		var minutes:Int = Std.int((timeInSeconds % 3600) / 60);
+		var seconds:Int = Std.int(timeInSeconds % 60);
+
+		return FlxStringUtil.formatString("%02d:%02d:%02d", [hours, minutes, seconds]);
 	}
 }

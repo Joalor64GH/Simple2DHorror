@@ -6,11 +6,11 @@ class GameOverState extends FlxState {
 
 		FlxG.sound.play(Paths.sound('sting'));
 
-		var text = new FlxText(0, 0, 0, "GAME OVER", 64);
+		var text:FlxText = new FlxText(0, 0, 0, "GAME OVER", 64);
 		text.screenCenter();
 		add(text);
 
-		var text2 = new FlxText(0, text.y + 100, 0, "R - Retry / ESCAPE - Menu", 30);
+		var text2:FlxText = new FlxText(0, text.y + 100, 0, "R - Retry / ESCAPE - Menu", 30);
 		text2.screenCenter(X);
 		add(text2);
 	}
