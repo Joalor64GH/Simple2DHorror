@@ -7,7 +7,7 @@ class Main extends Sprite
 	public final config = {
 		gameDimensions: [1280, 720],
 		defaultFPS: 60,
-		initialState: PlayState,
+		initialState: TitleState,
 		skipSplash: false,
 		startFullscreen: false
 	};

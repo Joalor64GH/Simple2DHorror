@@ -19,7 +19,7 @@ class PlayState extends FlxState
 		monster.maxVelocity.y = 100;
 		add(monster);
 
-		FlxG.camera.follow(player, LOCKON);
+		FlxG.camera.follow(player);
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 	}
 
@@ -58,7 +58,7 @@ class PlayState extends FlxState
 		if (FlxG.keys.justPressed.ESCAPE)
 			FlxG.switchState(TitleState.new);
 
-		if (FlxG.overlap(player, monster))
+		if (monster.overlaps(player))
 			openSubState(new JumpscareSubState());
 	}
 }
