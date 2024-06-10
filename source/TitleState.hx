@@ -19,8 +19,13 @@ class TitleState extends FlxState
 	{
 		super.update(elapsed);
 
-        if (FlxG.keys.justPressed.ESCAPE)
+        if (FlxG.keys.justPressed.ESCAPE) {
+			#if (sys || desktop)
             Sys.exit(0);
+			#else
+			System.exit(0);
+			#end
+		}
         else if (FlxG.keys.justPressed.ENTER)
             FlxG.switchState(PlayState.new);
 	}
