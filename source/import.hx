@@ -6,7 +6,6 @@ import sys.FileSystem;
 
 import openfl.Lib;
 import openfl.system.System;
-import openfl.display.Sprite;
 
 import flixel.*;
 import flixel.util.*;

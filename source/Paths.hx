@@ -1,10 +1,11 @@
 package;
 
+import haxe.io.Path;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+using haxe.io.Path;
+
 class Paths {
-	inline public static final SOUND_EXT = #if !html5 "ogg" #else "mp3" #end;
-	inline public static final VIDEO_EXT = "mp4";
 	inline public static final DEFAULT_FOLDER:String = 'assets';
 
 	static public function getPath(folder:Null<String>, file:String) {
@@ -33,22 +34,32 @@ class Paths {
 	#end
 
 	inline static public function video(key:String)
-		return file('videos/$key.$VIDEO_EXT');
+		return file('videos/$key.mp4');
 
 	inline static public function sound(key:String)
-		return file('sounds/$key.$SOUND_EXT');
+		return file('sounds/$key.ogg');
 
 	inline static public function soundRandom(key:String, min:Int, max:Int)
-		return file('sounds/$key${FlxG.random.int(min, max)}.$SOUND_EXT');
+		return file('sounds/$key${FlxG.random.int(min, max)}.ogg');
 
 	inline static public function music(key:String)
-		return file('music/$key.$SOUND_EXT');
+		return file('music/$key.ogg');
 
 	inline static public function image(key:String)
 		return file('images/$key.png');
 
-	inline static public function font(key:String)
-		return file('fonts/$key');
+	inline static public function font(key:String) {
+		var path:String = getPath('fonts/$key');
+
+		if (path.extension() == '') {
+			if (exists(path.withExtension("ttf")))
+				path = path.withExtension("ttf");
+			else if (exists(path.withExtension("otf")))
+				path = path.withExtension("otf");
+		}
+
+		return path;
+	}
 
 	inline static public function getSparrowAtlas(key:String)
 		return FlxAtlasFrames.fromSparrow(image(key), file('images/$key.xml'));

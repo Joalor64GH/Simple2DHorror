@@ -3,12 +3,11 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Simple 2D Horror" file="Horror" main="Main" version="0.1.0" company="Joalor64" />
+	<app title="Simple 2D Horror" file="Horror" main="Main" version="1.0.0" company="Joalor64" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
-	<window if="html5" resizable="false" />
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
@@ -27,6 +26,8 @@
 	<haxelib name="hxcpp-debug-server" if="desktop debug" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
+
+	<haxedef name="FLX_RECORD" />
 
 	<haxedef name="FLX_NO_MOUSE" if="mobile" />
 	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
