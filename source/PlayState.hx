@@ -7,6 +7,8 @@ class PlayState extends FlxState {
 	var timeTxt:FlxText;
 	var elapsedTime:Float;
 
+	var paused:Bool = false;
+
 	override public function create() {
 		super.create();
 
@@ -64,8 +66,8 @@ class PlayState extends FlxState {
 			player.velocity.y = 0;
 
 		if (FlxG.keys.justPressed.ESCAPE) {
+			paused = true;
 			persistentUpdate = false;
-			FlxG.sound.music.pause();
 			openSubState(new PauseSubState());
 		}
 
@@ -74,6 +76,25 @@ class PlayState extends FlxState {
 			FlxG.sound.music.volume = 0;
 			openSubState(new JumpscareSubState());
 		}
+	}
+
+	override function openSubState(SubState:FlxSubState)
+	{
+		if (paused)
+			FlxG.sound.music.pause();
+
+		super.openSubState(SubState);
+	}
+
+	override function closeSubState()
+	{
+		if (paused)
+		{
+			FlxG.sound.music.resume();
+			paused = false;
+		}
+
+		super.closeSubState();
 	}
 
 	function checkOverlap(sprite1:FlxSprite, sprite2:FlxSprite):Bool {
