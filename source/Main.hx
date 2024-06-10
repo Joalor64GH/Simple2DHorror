@@ -12,7 +12,7 @@ class Main extends openfl.display.Sprite {
 	public function new() {
 		super();
 
-		addChild(new openfl.display.FPS(10, 10, 0xFFFFFF));
 		addChild(new FlxGame(config.gameDimensions[0], config.gameDimensions[1], config.initialState, config.defaultFPS, config.defaultFPS, config.skipSplash, config.startFullscreen));
+		addChild(new FPSDisplay(10, 10, 0xFFFFFF));
 	}
 }
