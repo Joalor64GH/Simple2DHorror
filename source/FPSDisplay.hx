@@ -28,7 +28,7 @@ class FPSDisplay extends openfl.text.TextField
 			if (mem > memPeak) memPeak = mem;
 			
 			text = (visible) ? 
-				'FPS: ${times.length}\nMemory: ${FlxStringUtil.formatBytes(mem)} / ${FlxStringUtil.formatBytes(memPeak)}\nVersion: ${Lib.application.meta.get('version')}' : '';
+				'FPS: ${times.length}' + '\nMemory: ${FlxStringUtil.formatBytes(mem)} / ${FlxStringUtil.formatBytes(memPeak)}' + '\nVersion: v${Lib.application.meta.get('version')}' : '';
 
 			textColor = (times.length < FlxG.drawFramerate * 0.5) ? 0xFFFF0000 : 0xFFFFFFFF;
 		});
