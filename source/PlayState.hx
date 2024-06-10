@@ -14,15 +14,13 @@ class PlayState extends FlxState
 
 		monster = new Monster(200, 100);
 		add(monster);
-
-		FlxG.camera.follow(player);
-		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 	}
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
+		FlxG.camera.follow(player, LOCKON);
 		FlxG.overlap(player, monster, onOverlap);
 
 		if (monster.x < player.x)
@@ -58,8 +56,9 @@ class PlayState extends FlxState
 			
 	}
 
-	private function onOverlap()
+	private function onOverlap(player:Player, monster:Monster)
 	{
-		openSubState(new JumpscareSubState());
+		if (player.alive && player.exists && monster.alive && monster.exists)
+			openSubState(new JumpscareSubState());
 	}
 }
