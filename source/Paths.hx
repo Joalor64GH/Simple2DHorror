@@ -71,4 +71,4 @@ class Paths {
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), file('images/$key.txt'));
 }
 
-typedef FileAssets = #if sys Filesystem; #else openfl.utils.Assets; #end
+typedef FileAssets = #if sys FileSystem; #else openfl.utils.Assets; #end
