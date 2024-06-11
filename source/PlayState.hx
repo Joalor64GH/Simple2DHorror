@@ -72,24 +72,20 @@ class PlayState extends FlxState {
 		}
 
 		if (checkOverlap(monster, player)) {
-			trace('oops you got caught');
 			FlxG.sound.music.volume = 0;
 			openSubState(new JumpscareSubState());
 		}
 	}
 
-	override function openSubState(SubState:FlxSubState)
-	{
+	override function openSubState(SubState:FlxSubState) {
 		if (paused)
 			FlxG.sound.music.pause();
 
 		super.openSubState(SubState);
 	}
 
-	override function closeSubState()
-	{
-		if (paused)
-		{
+	override function closeSubState() {
+		if (paused) {
 			FlxG.sound.music.resume();
 			paused = false;
 		}

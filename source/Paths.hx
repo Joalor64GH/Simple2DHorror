@@ -8,13 +8,8 @@ using haxe.io.Path;
 class Paths {
 	inline public static final DEFAULT_FOLDER:String = 'assets';
 
-	inline static public function exists(asset:String) {
-		#if sys 
-		return FileSystem.exists(asset);
-		#else
-		return Assets.exists(asset);
-		#end
-	}
+	inline static public function exists(asset:String)
+		return FileAssets.exists(asset);
 
 	static public function getPath(folder:Null<String>, file:String) {
 		if (folder == null) folder = DEFAULT_FOLDER;
@@ -75,3 +70,5 @@ class Paths {
 	inline static public function getPackerAtlas(key:String)
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), file('images/$key.txt'));
 }
+
+typedef FileAssets = #if sys sys.Filesystem; #else openfl.utils.Assets; #end
